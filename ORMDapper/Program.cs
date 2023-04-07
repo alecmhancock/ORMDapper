@@ -18,18 +18,18 @@ namespace ORMDapper
 
             IDbConnection conn = new MySqlConnection(connString);
 
-            var departmentrepo = new DapperDepartmentRepository(conn);
-            departmentrepo.InsertDepartment("Department 88");
+            var productRepo = new DapperProductRepository(conn);
+            
+            productRepo.CreateProduct("Test", 1.99, 1);
 
-            var departments = departmentrepo.GetAllDepartments();
-            foreach (var department in departments)
+            var products = productRepo.GetAllProducts();
+            foreach (var product in products)
             {
-                Console.WriteLine(department.DepartmentId);
-                Console.WriteLine(department.Name);
-                Console.WriteLine();
+                Console.WriteLine($"{product.ProductId} {product.Name} {product.Price}"); 
             }
 
-            
+
+
         }
     }
 }
